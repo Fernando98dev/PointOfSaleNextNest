@@ -1,0 +1,34 @@
+export function formatCurrency(value: number): string {
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
+}
+
+export function isValidPage(value: number) {
+    if (value == null) {
+        return false;
+    }
+
+    if (typeof value !== 'number' && isNaN(value)) {
+        return false;
+    }
+    if (value <= 0) {
+        return false;
+    }
+
+    if (!Number.isInteger(value)) {
+        return false;
+    }
+
+    return true;
+}
+
+export function getImagePath(image: string) {
+    const cloudinaryBaseUrl = 'https://res.cloudinary.com'
+    if (image.startsWith(cloudinaryBaseUrl)) {
+        return image
+    } else {
+        const baseUrl = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL
+        return `${baseUrl}/public/img/${image}`
+    }
+}
+
+export const isAvailable = (inventory: number) => inventory > 0
