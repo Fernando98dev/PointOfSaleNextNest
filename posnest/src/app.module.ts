@@ -24,7 +24,8 @@ import { UploadImageModule } from './upload-image/upload-image.module';
     ProductsModule,
     TransactionsModule,
     CouponsModule,
-    UploadImageModule
+    UploadImageModule,
+    SeederModule
   ],
   controllers: [AppController],
   providers: [AppService],

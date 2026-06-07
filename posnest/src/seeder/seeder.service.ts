@@ -16,10 +16,10 @@ export class SeederService {
     ) { }
 
     async onModuleInit() {
-
         const connection = this.datasource;
         await connection.dropDatabase();
         await connection.synchronize();
+        await this.seed();
     }
 
     async seed() {

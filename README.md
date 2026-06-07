@@ -11,6 +11,9 @@ $ npm install
 
 ```bash
 $ docker compose up -d
+
+#provision the database
+$ npm run seed
 # watch mode
 $ npm run start:dev
 

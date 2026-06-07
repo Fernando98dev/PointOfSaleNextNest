@@ -1,25 +1,26 @@
 import { ProductCard } from "@/app/components/products/ProductCard";
 import { CategoryWithProductsResponseSchema } from "@/app/schema/schema";
-import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 
-type Params = Promise<{ params: { categoryId: string } }>;
+type Params = Promise<{ categoryId: string }>;
 
 async function getProductsByCategory(categoryId: string) {
     const url = `${process.env.API_URL}/categories/${categoryId}?products=true`;
     const res = await fetch(url, {
+        cache: 'no-store',
         next: {
             tags: ['products-by-category']
         }
     });
     const data = await res.json();
     if (!res.ok) {
-        redirect("/1");
+        notFound();
     }
     const products = CategoryWithProductsResponseSchema.parse(data);
     return products;
 }
 
-export default async function CategoryPage({ params }: { params: { categoryId: string } }) {
+export default async function CategoryPage({ params }: { params: Params }) {
 
     const { categoryId } = await params;
 

@@ -26,7 +26,7 @@ export function getImagePath(image: string) {
     if (image.startsWith(cloudinaryBaseUrl)) {
         return image
     } else {
-        const baseUrl = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL
+        const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'
         return `${baseUrl}/public/img/${image}`
     }
 }

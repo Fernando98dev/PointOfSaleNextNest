@@ -4,7 +4,9 @@ import Link from "next/link";
 
 async function getCategories() {
     const url = `${process.env.API_URL}/categories`;
-    const res = await fetch(url);
+    const res = await fetch(url, {
+        cache: 'no-store'
+    });
     const json = await res.json();
     const categories = CategoriesResponseSchema.parse(json);
     return categories;
